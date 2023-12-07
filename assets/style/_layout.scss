@@ -1,0 +1,204 @@
+/*HEADER & Navbar*/
+header {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 55px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+
+    .header-title {
+        color: whitesmoke;
+        margin-left: 15px;
+        display: flex;
+
+        a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: whitesmoke;
+        }
+
+        h1 {
+            margin-right: 5px;
+        }
+    }
+}
+
+
+.menu-btn {
+    position: fixed;
+    right: 0;
+    @include flex(column, center, center);
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+
+    .menu-btn-burger {
+        width: 50px;
+        height: 6px;
+        background: whitesmoke;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+        transition: all .5s ease-in-out;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 6px;
+            background: whitesmoke;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+            transition: all .5s ease-in-out;
+        }
+
+        &::before {
+            transform: translateY(-16px);
+        }
+
+        &::after {
+            transform: translateY(16px);
+        }
+    }
+}
+
+.menu-btn.open .menu-btn-burger {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+
+    &::before {
+        transform: rotate(45deg) translate(35px, -35px);
+    }
+
+    &::after {
+        transform: rotate(-45deg) translate(35px, 35px);
+    }
+}
+
+#monMenu {
+    position: fixed;
+    @include flex(column, center, center);
+    @extend %w-h-100;
+    backdrop-filter: blur(8px);
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 55px 0 0 0;
+    margin: 0 0 0 -100%;
+    transition: all 0.5s ease;
+    gap: 5vh;
+}
+
+
+nav li {
+    list-style: none;
+    position: relative;
+
+    .anav {
+        text-decoration: none;
+        color: whitesmoke;
+        -webkit-text-stroke: black 0.6px;
+        font-weight: bolder;
+        padding: 5px 10px;
+        transition: all 0.8s ease;
+        font-size: 6vh;
+
+        &:hover {
+            background-color: whitesmoke;
+            color: black;
+            border-radius: 5px;
+            transition: all 0.8s ease;
+        }
+
+        &.active {
+            background-color: whitesmoke;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+}
+
+.mobile-menu {
+    margin-left: 0 !important;
+}
+
+/*FOOTER*/
+
+footer {
+    @include flex(column-reverse, center, center);
+    background-color: black;
+    color: whitesmoke;
+    width: 100%;
+    margin-top: auto;
+
+    .footer {
+        color: whitesmoke;
+        margin: 5px;
+
+        p {
+            margin-top: 3px;
+        }
+
+        a {
+            transition: all 0.6s;
+
+            &:hover {
+                border-bottom: 2px solid whitesmoke;
+            }
+        }
+    }
+}
+
+
+.footer a,
+.footer p {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+@media all and (min-width: 480px) {
+    .menu-btn {
+        display: none;
+    }
+
+    nav {
+        display: inline;
+        width: 800px;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+
+    #monMenu {
+        position: inherit;
+        @include flex(row, space-evenly, center);
+        margin: inherit;
+        transition: all 0.5s ease;
+        backdrop-filter: none;
+        padding: 0;
+
+        li {
+            font-size: 3vh;
+
+            a {
+                -webkit-text-stroke: white;
+                font-size: 4vh;
+            }
+        }
+    }
+
+    #contenu-php {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+}
